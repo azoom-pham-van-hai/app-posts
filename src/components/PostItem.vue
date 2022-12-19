@@ -2,6 +2,7 @@
   <div class="post-item" @click="onClick">
     <strong>{{ post.id }}. </strong>{{ post.title }}
     <p v-if="showBody">{{ post.body }}</p>
+    <slot></slot>
   </div>
 </template>
 

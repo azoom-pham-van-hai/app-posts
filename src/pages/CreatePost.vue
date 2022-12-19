@@ -16,7 +16,7 @@
       @input="handleBodyChange"
     />
 
-    <app-button type="button" :on-click="createPost" title="Create" />
+    <app-button type="button" :on-click="createPost" :title="buttonTitle" />
     <p v-if="error" class="error">Title and body are both required</p>
   </div>
 </template>
@@ -34,25 +34,30 @@ export default {
   },
 
   props: {
-    initialTitle: {
-      type: String,
-      default: "",
-    },
-    initialContent: {
-      type: String,
-      default: "",
-    },
-    pageTitle: {
-      type: String,
-      default: "Create Post",
+    post: {
+      type: Object,
+      default() {
+        return {};
+      },
     },
   },
+
   data() {
     return {
-      title: this.initialTitle,
-      content: this.initialContent,
+      title: this.post.title,
+      content: this.post.body,
       error: false,
     };
+  },
+
+  computed: {
+    pageTitle() {
+      console.log(this.post.id);
+      return !this.post.id ? "Create post" : "Update post";
+    },
+    buttonTitle() {
+      return !this.post.id ? "Create" : "Update";
+    },
   },
 
   methods: {
@@ -67,7 +72,11 @@ export default {
     createPost() {
       if (this.checkDataValidate()) {
         this.error = false;
-        dispatch("ADD_POST", { title: this.title, body: this.content });
+        dispatch("ADD_POST", {
+          id: this.post.id,
+          title: this.title,
+          body: this.content,
+        });
         this.$router.push("/my-posts");
       }
     },

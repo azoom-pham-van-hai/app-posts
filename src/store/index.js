@@ -20,9 +20,12 @@ const state = () => {
 
 const getters = {
   ...make.getters(state),
-  getMyPostById(state, postId) {
-    const post = state.myPosts.find((p) => p.id === postId);
-    return post;
+
+  getMyPostById(state) {
+    return function (postId) {
+      const post = state.myPosts.find((p) => p.id === postId);
+      return post;
+    };
   },
 };
 
@@ -42,9 +45,28 @@ const actions = {
   },
 
   ADD_POST({ commit, state }, payload) {
-    const listMyPostLength = state.myPosts.length;
-    const newPostId = listMyPostLength + 1;
-    const newPosts = [...state.myPosts, { id: newPostId, ...payload }];
+    let newPosts;
+    if (payload.id) {
+      const postIndex = state.myPosts.findIndex((p) => p.id === payload.id);
+      newPosts = [...state.myPosts];
+      if (postIndex >= 0) {
+        newPosts[postIndex].title = payload.title;
+        newPosts[postIndex].body = payload.body;
+      }
+    } else {
+      const listMyPostLength = state.myPosts.length;
+      const newPostId = listMyPostLength + 1;
+      newPosts = [
+        ...state.myPosts,
+        { id: newPostId, title: payload.title, body: payload.body },
+      ];
+      console.log();
+    }
+    commit("SET_MY_POSTS", newPosts);
+  },
+
+  DELETE_POST({ commit, state }, payload) {
+    const newPosts = state.myPosts.filter((p) => p.id !== payload);
     commit("SET_MY_POSTS", newPosts);
   },
 

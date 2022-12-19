@@ -8,18 +8,27 @@
         :post="post"
         :show-body="true"
         :on-click="updatePost(post.id)"
-      ></post-item>
+      >
+        <app-button
+          class="deletebtn"
+          :on-click="deletePost(post.id)"
+          title="Delete"
+        ></app-button>
+      </post-item>
     </div>
   </div>
 </template>
 
 <script>
-import { get } from "vuex-pathify";
+import { get, dispatch } from "vuex-pathify";
+
 import PostItem from "../components/PostItem.vue";
+import AppButton from "../components/app/CommonButton.vue";
 
 export default {
   components: {
     PostItem,
+    AppButton,
   },
 
   computed: {
@@ -30,6 +39,12 @@ export default {
     updatePost(id) {
       return () => {
         this.$router.push(`/update-post/${id}`);
+      };
+    },
+
+    deletePost(id) {
+      return () => {
+        dispatch("DELETE_POST", id);
       };
     },
   },
@@ -66,5 +81,11 @@ export default {
   > .app-pagination {
     margin-top: 20px;
   }
+}
+
+.deletebtn {
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
 }
 </style>

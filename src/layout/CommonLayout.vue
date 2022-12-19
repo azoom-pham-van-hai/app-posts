@@ -9,22 +9,12 @@
         </router-link>
         <router-link to="/my-posts"
           ><app-button title="View your posts"
-            ><post-icon></post-icon
+            ><person-icon></person-icon
           ></app-button>
         </router-link>
         <router-link to="/create-post"
           ><app-button title="Create new post"
             ><write-icon></write-icon
-          ></app-button>
-        </router-link>
-        <router-link to="/update-post"
-          ><app-button title="Update new post"
-            ><write-icon></write-icon
-          ></app-button>
-        </router-link>
-        <router-link to="/authors"
-          ><app-button title="View all authors"
-            ><person-icon></person-icon
           ></app-button>
         </router-link>
       </ul>
