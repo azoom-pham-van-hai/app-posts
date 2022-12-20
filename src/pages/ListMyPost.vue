@@ -2,6 +2,7 @@
   <div class="list-posts">
     <h1 v-if="!posts?.length">You have no post</h1>
     <div v-else class="list">
+      <h1>Your post</h1>
       <post-item
         v-for="post in posts"
         :key="post.id"

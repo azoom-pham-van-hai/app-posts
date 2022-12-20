@@ -92,11 +92,9 @@ export default {
   }
 
   > .groupbtn > .link > .app-button {
-    width: 120px;
-    padding: 5px 10px;
-    outline: none;
-    font-size: 16px;
-    height: 40px;
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
   }
 }
 </style>

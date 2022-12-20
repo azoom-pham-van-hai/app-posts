@@ -54,16 +54,20 @@ export default {
   > .sidebar {
     width: 30%;
     margin-top: 0;
-    margin-right: 20px;
+    margin-right: 40px;
+    border: 1px solid #dba39a;
+    border-radius: 5px;
+    padding: 20px;
+    height: fit-content;
   }
 
   > .sidebar > .list {
     display: flex;
     flex-direction: column;
     list-style-type: none;
-    gap: 10px;
+    gap: 20px;
     // background-color: #f0dbdb;
-    // padding: 10px;
+    padding: 0;
     border-radius: 5px;
     margin: 0;
   }
