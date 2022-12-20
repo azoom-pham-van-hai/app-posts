@@ -44,9 +44,9 @@ export default {
   },
 
   watch: {
-    currentPage() {
+    currentPage(newPage) {
       dispatch("SET_INITIAL_STATE");
-      this.$router.push(`posts?page=${this.currentPage}&limit=${this.limit}`);
+      this.$router.push(`posts?page=${newPage}&limit=${this.limit}`);
     },
   },
 };

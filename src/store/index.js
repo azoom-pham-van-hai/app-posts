@@ -44,6 +44,11 @@ const actions = {
     commit("SET_PARAMS", newParams);
   },
 
+  SET_LIMIT({ commit, state }, payload) {
+    const newParams = { ...state.params, limit: payload };
+    commit("SET_PARAMS", newParams);
+  },
+
   ADD_POST({ commit, state }, payload) {
     let newPosts;
     if (payload.id) {
@@ -60,7 +65,6 @@ const actions = {
         ...state.myPosts,
         { id: newPostId, title: payload.title, body: payload.body },
       ];
-      console.log();
     }
     commit("SET_MY_POSTS", newPosts);
   },
