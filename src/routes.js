@@ -6,6 +6,7 @@ import PostDetail from "./pages/PostDetail.vue";
 import CreatePost from "./pages/CreatePost.vue";
 import UpdatePost from "./pages/UpdatePost.vue";
 import ListMyPosts from "./pages/ListMyPost.vue";
+import CreateUser from "./pages/CreateUser.vue";
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: "/my-posts",
     name: "ListMyPosts",
     component: ListMyPosts,
+  },
+  {
+    path: "/create-user",
+    name: "CreateUser",
+    component: CreateUser,
   },
 ];
 

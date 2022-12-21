@@ -2,7 +2,7 @@
   <div class="app-input">
     <label :for="name" class="label">{{ label }}</label>
     <input
-      type="text"
+      :type="typeInput"
       v-model="localValue"
       :placeholder="placeholder"
       class="input"
@@ -13,6 +13,10 @@
 <script>
 export default {
   props: {
+    typeInput: {
+      type: String,
+      default: "text",
+    },
     value: {
       type: String,
     },
@@ -51,7 +55,6 @@ export default {
   }
 
   > .input {
-    border: none;
     padding: 5px 20px;
     border-radius: 5px;
     outline: none;

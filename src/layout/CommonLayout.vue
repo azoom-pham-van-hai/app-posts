@@ -17,6 +17,11 @@
             ><write-icon></write-icon
           ></app-button>
         </router-link>
+        <router-link to="/create-user"
+          ><app-button title="Create new user"
+            ><person-icon></person-icon
+          ></app-button>
+        </router-link>
       </ul>
     </div>
     <div class="main"><slot></slot></div>

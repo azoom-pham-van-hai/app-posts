@@ -1,5 +1,10 @@
 <template>
-  <button class="app-button" @click="onClick" :type="buttonType">
+  <button
+    :class="{ 'app-button': true, '-disabled': disabled }"
+    @click="onClick"
+    :type="buttonType"
+    :disabled="disabled"
+  >
     <slot></slot>
     <p>{{ title }}</p>
   </button>
@@ -19,6 +24,10 @@ export default {
     title: {
       type: String,
       required: true,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
 };
@@ -42,6 +51,10 @@ export default {
     width: 24px;
     height: 24px;
     margin-right: 10px;
+  }
+
+  &.-disabled {
+    background-color: #ddd;
   }
 }
 </style>
