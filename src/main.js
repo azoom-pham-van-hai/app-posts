@@ -17,9 +17,9 @@ new Vue({
   store,
   beforeMount() {
     const { page, limit } = this.$route.query;
-    this.$store.dispatch("SET_PAGE", page);
-    this.$store.dispatch("SET_LIMIT", limit);
+    this.$store.dispatch("SET_PAGE", page ?? 1);
+    this.$store.dispatch("SET_LIMIT", limit ?? 10);
     this.$store.dispatch("SET_INITIAL_STATE", { page, limit });
   },
-  validations: {}
+  validations: {},
 }).$mount("#app");
