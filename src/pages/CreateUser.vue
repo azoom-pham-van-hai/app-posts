@@ -2,116 +2,115 @@
   <div class="create-user">
     <h1>Create User</h1>
     <div class="form">
-      <div class="part1">
-        <app-input
-          :value="name"
+      <div class="part">
+        <label class="label" for="name">Name *</label>
+        <input
+          v-model.trim.lazy="$v.name.$model"
+          id="name"
+          class="input"
           placeholder="Enter user's name"
-          name="name"
-          label="Name *"
-          @input="handleChangeName"
         />
-        <div class="error" v-if="!$v.name.required && $v.name.$dirty">
-          Name is required
-        </div>
-        <div
-          class="error"
-          v-if="$v.name.required && !$v.name.minLength && $v.name.$dirty"
-        >
-          Name has at least 4 characters
+        <div class="error-container">
+          <div class="error" v-if="!$v.name.required && $v.name.$dirty">
+            Name is required
+          </div>
+          <div class="error" v-if="!$v.name.minLength && $v.name.$dirty">
+            Name has at least 4 characters
+          </div>
         </div>
 
-        <app-input
-          :value="dob"
+        <label class="label" for="dob">Date of birth *</label>
+        <input
+          v-model.lazy="$v.dob.$model"
           placeholder="Enter user's date of birth"
-          name="dob"
-          label="Date Of Birth *"
-          typeInput="date"
-          @input="handleChangeDob"
+          class="input"
+          id="dob"
+          type="date"
         />
-        <div class="error" v-if="$v.dob.$error">DOB is required</div>
+        <div class="error" v-if="$v.dob.$error">Date of birth is required</div>
 
-        <app-input
-          :value="address"
+        <label class="label" for="address">Address *</label>
+        <input
+          v-model.trim.lazy="$v.address.$model"
+          id="address"
+          class="input"
           placeholder="Enter user's address"
-          name="Address"
-          label="Address *"
-          @input="handleChangeAddress"
         />
         <div class="error" v-if="$v.address.$error">Address is required</div>
 
-        <app-input
-          :value="phone"
+        <label class="label" for="phone">Phone *</label>
+        <input
+          v-model.trim.lazy="$v.phone.$model"
+          id="phone"
+          class="input"
           placeholder="Enter user's phone"
-          name="phone"
-          label="Phone Number *"
-          @input="handleChangePhone"
         />
-        <div class="error" v-if="!$v.phone.required && $v.phone.$dirty">
-          Phone number is required
-        </div>
-        <div
-          class="error"
-          v-if="$v.phone.required && !$v.phone.onlyNumber && $v.phone.$dirty"
-        >
-          Invalid phone number
-        </div>
-        <div
-          class="error"
-          v-if="
-            $v.phone.required &&
-            $v.phone.onlyNumber &&
-            !$v.phone.maxLength &&
-            $v.phone.$dirty
-          "
-        >
-          Phone number has maximum 11 characters
+        <div class="error-container">
+          <div class="error" v-if="!$v.phone.required && $v.phone.$dirty">
+            Phone number is required
+          </div>
+          <div class="error" v-if="!$v.phone.onlyNumber && $v.phone.$dirty">
+            Invalid phone number
+          </div>
+          <div class="error" v-if="!$v.phone.minLength && $v.phone.$dirty">
+            Phone number has at least 10 characters
+          </div>
+          <div class="error" v-if="!$v.phone.maxLength && $v.phone.$dirty">
+            Phone number has maximum 11 characters
+          </div>
         </div>
       </div>
 
-      <div class="part2">
-        <app-input
-          :value="email"
+      <div class="part">
+        <label class="label" for="email">Email *</label>
+        <input
+          v-model.trim.lazy="$v.email.$model"
+          id="email"
+          class="input"
           placeholder="Enter user's email"
-          name="email"
-          label="Email *"
-          @input="handleChangeEmail"
         />
-        <div class="error" v-if="!$v.email.required && $v.email.$dirty">
-          Email is required
-        </div>
-        <div
-          class="error"
-          v-if="$v.email.required && !$v.email.email && $v.email.$dirty"
-        >
-          Invalid email
+        <div class="error-container">
+          <div class="error" v-if="!$v.email.required && $v.email.$dirty">
+            Email is required
+          </div>
+          <div class="error" v-if="!$v.email.email && $v.email.$dirty">
+            Invalid email
+          </div>
         </div>
 
-        <app-input
-          :value="password"
+        <label class="label" for="password">Password *</label>
+        <input
+          v-model.trim.lazy="$v.password.$model"
+          id="password"
+          class="input"
+          type="password"
           placeholder="Enter user's password"
-          name="password"
-          label="Password *"
-          typeInput="password"
-          @input="handleChangePassword"
         />
-        <div class="error" v-if="!$v.password.required && $v.password.$dirty">
-          Password is required
-        </div>
-        <div
-          class="error"
-          v-if="
-            $v.password.required &&
-            (!$v.password.minLength ||
-              !$v.password.oneUppercase ||
-              !$v.password.specialCharacter) &&
-            $v.password.$dirty
-          "
-        >
-          Password has at least 6 characters, includes at least 1 uppercase and
-          1 special character
+        <div class="error-container">
+          <div class="error" v-if="!$v.password.required && $v.password.$dirty">
+            Password is required
+          </div>
+          <div
+            class="error"
+            v-if="!$v.password.minLength && $v.password.$dirty"
+          >
+            Password has at least 6 characters
+          </div>
+          <div
+            class="error"
+            v-if="!$v.password.oneUppercase && $v.password.$dirty"
+          >
+            Password has at least one uppercase character
+          </div>
+          <div
+            class="error"
+            v-if="!$v.password.specialCharacter && $v.password.$dirty"
+          >
+            Password has at least one special character
+          </div>
         </div>
 
-        <label for="gender" class="label">Gender</label>
+        <label class="label" for="gender">Gender</label>
         <select
           placeholder="Select user's gender"
           class="select"
@@ -123,13 +122,13 @@
           <option value="others">Others</option>
         </select>
 
-        <app-input
-          :value="graduatedDate"
-          placeholder="Enter user's graduated date"
-          name="graduatedDate"
-          label="Graduation Date"
-          typeInput="date"
-          @input="handleChangeGraduationDate"
+        <label class="label" for="graduatedDate">Graduated Date</label>
+        <input
+          v-model.trim.lazy="$v.graduatedDate.$model"
+          id="graduatedDate"
+          class="input"
+          placeholder="Enter user's graduatedDate"
+          type="date"
         />
         <div
           class="error"
@@ -157,12 +156,10 @@ import {
   maxLength,
 } from "vuelidate/lib/validators";
 import AppButton from "../components/app/CommonButton.vue";
-import AppInput from "../components/app/CommonInput.vue";
 
 export default {
   components: {
     AppButton,
-    AppInput,
   },
 
   data() {
@@ -192,6 +189,7 @@ export default {
     },
     phone: {
       required,
+      minLength: minLength(10),
       maxLength: maxLength(11),
       onlyNumber: function (value) {
         return !/[^0-9]+/g.test(value);
@@ -237,35 +235,6 @@ export default {
 
       console.log(info);
     },
-
-    handleChangeName(e) {
-      this.$v.name.$touch();
-      this.name = e;
-    },
-    handleChangeAddress(e) {
-      this.$v.address.$touch();
-      this.address = e;
-    },
-    handleChangePhone(e) {
-      this.$v.phone.$touch();
-      this.phone = e;
-    },
-    handleChangeEmail(e) {
-      this.$v.email.$touch();
-      this.email = e;
-    },
-    handleChangePassword(e) {
-      this.$v.password.$touch();
-      this.password = e;
-    },
-    handleChangeDob(e) {
-      this.$v.dob.$touch();
-      this.dob = e;
-    },
-    handleChangeGraduationDate(e) {
-      this.$v.graduatedDate.$touch();
-      this.graduatedDate = e;
-    },
   },
 };
 </script>
@@ -280,25 +249,32 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-  > .form > .part1,
-  > .form > .part2 {
+  > .form > .part {
     flex-basis: 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    gap: 20px;
+    gap: 16px;
     width: 100%;
     height: 100%;
     border-radius: 5px;
   }
 
-  > .form > .part2 > .label {
+  > .form > .part > .input {
+    padding: 5px 20px;
+    border-radius: 5px;
+    outline: none;
+    height: 46px;
+    border: 1px solid #dba39a;
+  }
+
+  > .form > .part > .label {
     margin-bottom: -10px;
     text-align: left;
   }
 
-  .select {
+  > .form > .part > .select {
     padding: 5px 20px;
     border-radius: 5px;
     outline: none;
@@ -307,8 +283,12 @@ export default {
   }
 }
 
-.error {
+.error-container > .error {
   color: red;
   text-align: left;
+
+  &:not(:first-child) {
+    display: none;
+  }
 }
 </style>

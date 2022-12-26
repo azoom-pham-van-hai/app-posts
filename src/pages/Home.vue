@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="home-wrapper">
-    <h1 class="title">Welcome to our online library system</h1>
+    <h1 class="title">Welcome to our blog</h1>
     <h5 class="title">Follow us on</h5>
     <div class="icons">
       <facebook-icon></facebook-icon>
